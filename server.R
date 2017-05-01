@@ -57,7 +57,7 @@ function(input, output) {
     #I give a frequency to each word of this list
     b = origin_agg$Freq
 
-    #The package will automatically make the wordcloud ! (I add a black background)
+    #The package will automatically make the wordcloud ! (I add a white background)
     par(bg="white")
     pal2<-brewer.pal(8,'Dark2')
     wordcloud(a , b , rot.per=0.1,colors=pal2,alpha=0.8,
