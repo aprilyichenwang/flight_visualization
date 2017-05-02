@@ -29,13 +29,15 @@ This will start the `shiny` app. See below for details on how to interact with t
 Plots 
 ----------------
 
-Below are three screenshots of the interface of the shiny app.
+Below are four screenshots of the interface of the shiny app.
 
 ![alt text](https://github.com/aprilyichenwang/flight_visualization/blob/master/images/flight_table.png)
 
 ![alt text](https://github.com/aprilyichenwang/flight_visualization/blob/master/images/network.png)
 
 ![alt text](https://github.com/aprilyichenwang/flight_visualization/blob/master/images/word_map.png)
+
+![alt text](https://github.com/aprilyichenwang/flight_visualization/blob/master/images/dendro.png)
 
 [Data Set](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time)
 ----------------
