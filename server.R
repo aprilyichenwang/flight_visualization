@@ -24,17 +24,17 @@ function(input, output) {
   # Force Network #
   #################
   output$NetworkPlot <- renderForceNetwork({
-    origin_dest_agg <- origin_dest_agg[origin_dest_agg$origin_state %in% c(input$show_vars2) &
-                                       origin_dest_agg$dest_state %in% c(input$show_vars2), ]
+    temp <- origin_dest_agg[origin_dest_agg$origin_state %in% c(input$show_vars2) &
+                            origin_dest_agg$dest_state %in% c(input$show_vars2), ]
     # Prepare NODES dataframe
-    cities <- c(origin_dest_agg$origin_city, origin_dest_agg$dest_city)
+    cities <- c(temp$origin_city, temp$dest_city)
     nodes <- data.frame(cities)
-    nodes$states <- as.factor(c(origin_dest_agg$origin_state, origin_dest_agg$dest_state))
+    nodes$states <- as.factor(c(temp$origin_state, temp$dest_state))
     nodes <- unique(nodes)
     
     # Prepare LINKS dataframe
     citie_levels <- levels(nodes$cities)
-    links <- data.frame(origin_dest_agg[, c(1, 3, 5)])
+    links <- data.frame(temp[, c(1, 3, 5)])
     links$origin_city <- factor(links$origin_city, levels=citie_levels)
     links$origin_city <- as.integer(links$origin_city) - 1
     links$dest_city <- factor(links$dest_city, levels=citie_levels)
@@ -63,6 +63,29 @@ function(input, output) {
     pal2 <- brewer.pal(8,'Dark2')
     wordcloud(a , b , rot.per=0.1, colors=pal2,
               alpha=0.8, use.r.layout = FALSE)
+  })
+  
+  ##################
+  # Dendro Network #
+  ##################
+  
+  output$dendro <- renderDendroNetwork({
+    temp <- origin_dest_agg[origin_dest_agg$origin_state %in% c(input$show_vars2) &
+                              origin_dest_agg$dest_state %in% c(input$show_vars2), ]
+    cities <- c(temp$origin_city, temp$dest_city)
+    cities <- sort(unique(cities))
+    m <- matrix(0, ncol = length(cities), nrow = length(cities))
+    m <- data.frame(m)
+    rownames(m) <- cities
+    colnames(m) <- cities
+    for (i in seq(1, nrow(temp))){
+      row <- temp[i, ]
+      m[row$origin_city, row$dest_city] = row$count
+      m[row$dest_city, row$origin_city] = row$count
+    }
+    
+    hc <- hclust(dist(m), "ave")
+    dendroNetwork(hc, height = 600, opacity = input$opacity)
   })
   
 }

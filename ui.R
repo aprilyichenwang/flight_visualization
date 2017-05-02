@@ -21,10 +21,12 @@ fluidPage(
       tabsetPanel(
         id = 'dataset',
         tabPanel('Flight Table', DT::dataTableOutput('mytable1')),
-        tabPanel('NetworkPlot', forceNetworkOutput("NetworkPlot",height='680px')),
-        tabPanel('WordMap', plotOutput('WordMap', height = '680px'))
+        tabPanel('Force Network', forceNetworkOutput("NetworkPlot",height='680px')),
+        tabPanel('WordMap', plotOutput('WordMap', height = '680px')),
+        tabPanel("Dendro Network", dendroNetworkOutput("dendro"))
       )
       )     
     )
+  
   )
  
