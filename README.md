@@ -1,7 +1,9 @@
 Flight Visualization
 ==============================
 
-Team: April (Yichen) Liu & Zefeng Zhang
+Team: 
+April (Yichen) Liu (ywang348@usfca.edu)
+Zefeng Zhang (zzhang107@dons.usfca.edu)
 
 Instructions
 ----------------
