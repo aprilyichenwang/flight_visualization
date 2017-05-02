@@ -11,10 +11,6 @@ fluidPage(
                        selected = names(origin_dest_agg))
   ),
 
-      conditionalPanel(
-        'input.dataset === "iris"',
-        helpText('Display 5 records by default.')
-      ),
   
   sidebarLayout(
     sidebarPanel(
@@ -27,7 +23,7 @@ fluidPage(
         id = 'dataset',
         tabPanel('Flight Table', DT::dataTableOutput('mytable1')),
         tabPanel('NetworkPlot', forceNetworkOutput("NetworkPlot",height='680px')),
-        tabPanel('WordMap', plotOutput('WordMap',height = '680px'))
+        tabPanel('WordMap', plotOutput('WordMap', height = '680px'))
       )
       )     
     )
