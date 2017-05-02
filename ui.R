@@ -7,11 +7,10 @@ fluidPage(
   conditionalPanel(
     'input.dataset === "Flight Table"',
     checkboxGroupInput('show_vars', 'Columns in Flights to show:',
-                       names(origin_dest_agg), 
+                       names(origin_dest_agg),
                        selected = names(origin_dest_agg))
   ),
 
-  
   sidebarLayout(
     sidebarPanel(
       checkboxGroupInput('show_vars2', 'Flight Origin by State:',

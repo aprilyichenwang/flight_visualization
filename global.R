@@ -25,3 +25,8 @@ origin_dest_agg <- unique(origin_dest_agg[, 1:3])
 origin_dest_agg <- separate(origin_dest_agg, origin_city, into = c("origin_city", "origin_state"), sep = ", ")
 origin_dest_agg <- separate(origin_dest_agg, dest_city, into = c("dest_city", "dest_state"), sep = ", ")
 
+raw_origin_dest <- subset(raw_data, ,select=c("ORIGIN_CITY_NAME", "DEST_CITY_NAME"))
+raw_origin_dest$ORIGIN_CITY_NAME <- as.character(raw_origin_dest$ORIGIN_CITY_NAME)
+origin_separate <- separate(raw_origin_dest, ORIGIN_CITY_NAME, into = c("origin_city", "origin_state"), sep = ", ")
+origin_separate <- origin_separate[origin_separate$origin_state %in% c('TX', 'NY', 'CA'), ]
+origin_agg <- data.frame(table(origin_dest_agg$origin_city))

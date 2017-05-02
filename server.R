@@ -48,7 +48,7 @@ function(input, output) {
     raw_origin_dest$ORIGIN_CITY_NAME <- as.character(raw_origin_dest$ORIGIN_CITY_NAME)
     origin_separate <- separate(raw_origin_dest, ORIGIN_CITY_NAME, into = c("origin_city", "origin_state"), sep = ", ")
     origin_separate <- origin_separate[origin_separate$origin_state %in% c(input$show_vars2), ]
-    origin_agg <- data.frame(table(origin_dest_agg$origin_city))
+    origin_agg <- data.frame(table(origin_separate$origin_city))
     a = origin_agg$Var1
     b = origin_agg$Freq
 
