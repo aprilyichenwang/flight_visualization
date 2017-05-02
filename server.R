@@ -8,9 +8,16 @@ function(input, output) {
   # Flight Table #
   ################
   output$mytable1 <- DT::renderDataTable({
-    origin_dest_agg <- origin_dest_agg[origin_dest_agg$origin_state %in% c(input$show_vars2) &
-                                       origin_dest_agg$dest_state %in% c(input$show_vars2), ]
-    DT::datatable(origin_dest_agg[, input$show_vars, drop = FALSE])
+    temp <- raw_data[, c('ORIGIN_CITY_NAME', 'DEST_CITY_NAME')]
+    temp$ORIGIN_CITY_NAME <- as.character(temp$ORIGIN_CITY_NAME)
+    temp$DEST_CITY_NAME <- as.character(temp$DEST_CITY_NAME)
+    temp <- temp %>% group_by(ORIGIN_CITY_NAME, DEST_CITY_NAME) %>% mutate(count = n())
+    temp <- unique(temp[, 1:3])
+    temp <- separate(temp, ORIGIN_CITY_NAME, into = c("origin_city", "origin_state"), sep = ", ")
+    temp <- separate(temp, DEST_CITY_NAME, into = c("dest_city", "dest_state"), sep = ", ")
+    temp <- temp[temp$origin_state %in% c(input$show_vars2) &
+                 temp$dest_state %in% c(input$show_vars2), ]
+    DT::datatable(temp[, input$show_vars, drop = FALSE])
   })
   
   #################
