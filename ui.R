@@ -6,9 +6,9 @@ fluidPage(
   
   conditionalPanel(
     'input.dataset === "Flight Table"',
-    checkboxGroupInput('show_vars', 'Columns in Flights to show:',
-                       names(origin_dest_agg),
-                       selected = names(origin_dest_agg))
+    selectInput('show_vars', 'Columns in Flights to show:', multiple = TRUE,
+                choices = names(origin_dest_agg),
+                selected = c('CA', 'TX', 'NY'))
   ),
 
   sidebarLayout(
