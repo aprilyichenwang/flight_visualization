@@ -10,6 +10,10 @@ fluidPage(
                        names(origin_dest_agg), 
                        selected = c("NY", "CA", "TX"))
   ),
+      conditionalPanel(
+        'input.dataset === "iris"',
+         helpText('Display 5 records by default.')
+        ),
   
   sidebarLayout(
     sidebarPanel(
