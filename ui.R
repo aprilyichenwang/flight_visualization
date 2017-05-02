@@ -20,7 +20,7 @@ fluidPage(
     sidebarPanel(
       checkboxGroupInput('show_vars2', 'Flight Origin by State:',
                          sort(unique(origin_dest_agg$dest_state)),
-                         selected = c('MA','AK'))
+                         selected = c('CA', 'TX', 'NY'))
     ),
     mainPanel(
       tabsetPanel(
