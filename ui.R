@@ -14,8 +14,8 @@ fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput('show_vars2', 'Flight Origin by State:', multiple = TRUE,
-                         choices = sort(unique(origin_dest_agg$dest_state)),
-                         selected = c('CA', 'TX', 'NY'))
+                  choices = sort(unique(origin_dest_agg$dest_state)),
+                  selected = c('CA', 'TX', 'NY'))
     ),
     mainPanel(
       tabsetPanel(
